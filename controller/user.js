@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer");
 const express=require("express")
 const cors = require("cors")
 appregister=express()
-
+appregister.use(express.json())
 appregister.use(express())
 //nodemailer welcome message
 const transporter = nodemailer.createTransport({
@@ -63,6 +63,7 @@ appregister.use(function (req, res, next) {
 
 
 appregister.post("/addnew",(req,res,next)=>{
+console.log("sss")
     res.header("Access-Control-Allow-Origin", "https://testfrontend-eta.vercel.app");
     res.header({"Access-Control-Allow-Credentials": true});
     res.header("Access-Control-Max-Age", 24*60*60*1000);
@@ -84,7 +85,7 @@ appregister.post("/addnew",(req,res,next)=>{
   },async (req,res)=>{
 
 
-    // res.header("Access-Control-Allow-Origin", "https://testfrontend-eta.vercel.app/");
+    res.header("Access-Control-Allow-Origin", "https://testfrontend-eta.vercel.app/");
 
     res.header("Access-Control-Allow-Origin", "https://testfrontend-eta.vercel.app");
     res.header({"Access-Control-Allow-Credentials": true});

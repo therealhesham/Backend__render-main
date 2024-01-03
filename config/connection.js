@@ -1,6 +1,6 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
 require('dotenv').config();
-const uri = "mongodb+srv://lvw:LVW123456789@cluster0.9bdwe65.mongodb.net/?retryWrites=true&w=majority&ssl=true";
+const uri = "mongodb+srv://lvw:LVW123456789@cluster0.9bdwe65.mongodb.net/landingpage?retryWrites=true&w=majority&ssl=true";
 console.log('MongoDB URI:', uri);
 
 

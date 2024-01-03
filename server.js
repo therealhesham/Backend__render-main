@@ -5,11 +5,10 @@ const server = require("http").createServer(app);
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { MongoClient } = require('mongodb');
-
-
+const {appregister}=require("./controller/user")
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(appregister)
 const port = process.env.PORT || 5000
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -41,7 +40,6 @@ app.use(cors({maxAge:24*60*60*1000,origin:"https://testfrontend-eta.vercel.app/"
 
 const userRoute = require("./Routers/userRoute");
 app.use("/user", userRoute);
-
 
 // Middleware to establish MongoDB connection
 app.use(async (req, res, next) => {

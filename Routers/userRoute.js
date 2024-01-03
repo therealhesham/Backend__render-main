@@ -1,6 +1,5 @@
 const express = require("express");
 const route = express.Router();
-const { add } = require("../controller/user")
 
 route.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', 'https://testfrontend-eta.vercel.app/');
@@ -12,7 +11,6 @@ route.use(function (req, res, next) {
     next()
 })
 
-route.post("/addUser", add)
 
 module.exports = route;
 

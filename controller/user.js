@@ -1,6 +1,10 @@
 const user = require("../models/user");
 const nodemailer = require("nodemailer");
+const express=require("express")
 
+appregister=express()
+
+appregister.use(express())
 //nodemailer welcome message
 const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -37,46 +41,65 @@ async function sendWelcomeEmail(userData) {
     }
 }
 
+appregister.post("/addnew",(req,res,next)=>{
+    res.header("Access-Control-Allow-Origin", "https://testfrontend-eta.vercel.app/");
+    res.header({"Access-Control-Allow-Credentials": true});
+    res.header("Access-Control-Max-Age", 24*60*60*1000);
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+  
+    res.cookie("token","jwter"
+  ,{
+      maxAge: 1000000000 , sameSite : "None",SameSite:"None" ,
+      samesite : "None",SameSite:"none" ,
+      sameSite : "None",SameSite:"None" 
+  }
+  );
+  
+  
+  next()    
+  
+  
+  },async (req,res)=>{
 
-const add = async (req,res)=>{
 
+    res.header("Access-Control-Allow-Origin", "https://testfrontend-eta.vercel.app/");
 
-        res.header("Access-Control-Allow-Origin", "https://testfrontend-eta.vercel.app/");
+    res.header("Access-Control-Allow-Origin", "https://testfrontend-eta.vercel.app");
+    res.header({"Access-Control-Allow-Credentials": true});
+    res.header("Access-Control-Max-Age", 24*60*60*1000);
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+  
     
-        res.header("Access-Control-Allow-Origin", "https://testfrontend-eta.vercel.app");
-        res.header({"Access-Control-Allow-Credentials": true});
-        res.header("Access-Control-Max-Age", 24*60*60*1000);
-          res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
-      res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-      
-        
 
-    const {role,firstName,lastName,email,phone} = req.body
-    if(!firstName){
-        res.status(400).json({message:"First Name is required"})
-    }
-    else if(!lastName){
-        res.status(400).json({message:"Last Name is required"})
-    }
-    else if(!email){
-        res.status(400).json({message:"Email is required"})
-    }
-    else if(!phone){
-        res.status(400).json({message:"Phone is required"})
-    }
-    else{
-        
-        const userData = await user.create({
-            role:role,
-            firstName:firstName,
-            lastName:lastName,
-            email:email,
-            phone:phone
-        })
-        console.log(userData)
-        sendWelcomeEmail(userData)
-        res.status(200).json()
-    }
+const {role,firstName,lastName,email,phone} = req.body
+if(!firstName){
+    res.status(400).json({message:"First Name is required"})
+}
+else if(!lastName){
+    res.status(400).json({message:"Last Name is required"})
+}
+else if(!email){
+    res.status(400).json({message:"Email is required"})
+}
+else if(!phone){
+    res.status(400).json({message:"Phone is required"})
+}
+else{
+    
+    const userData = await user.create({
+        role:role,
+        firstName:firstName,
+        lastName:lastName,
+        email:email,
+        phone:phone
+    })
+    console.log(userData)
+    sendWelcomeEmail(userData)
+    res.status(200).json()
+}
 }
 
-module.exports = { add };
+)
+module.exports.appregister= appregister ;

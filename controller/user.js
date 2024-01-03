@@ -1,7 +1,8 @@
-const user = require("../models/user");
+
 const nodemailer = require("nodemailer");
 const express=require("express")
-const cors = require("cors")
+const cors = require("cors");
+const { user } = require("../models/user");
 appregister=express()
 appregister.use(express.json())
 appregister.use(express())

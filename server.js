@@ -14,7 +14,7 @@ const port = process.env.PORT || 5000
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', 'https://testfrontend-eta.vercel.app/');
   res.header({ "Access-Control-Allow-Credentials": true });
   res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override,Content-Type, Accept');
   res.header("Access-Control-Max-Age", 24 * 60 * 60 * 1000);
@@ -37,11 +37,8 @@ app.get("/", function (req, res) {
 });
 
 // CORS middleware for specific routes
-app.use("/user", cors({
-  origin: "https://lvw.onrender.com",
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-}));
+app.use(cors({maxAge:24*60*60*1000,origin:"https://https://testfrontend-eta.vercel.app/" ,exposedHeaders:'*',credentials:true,preflightContinue: true}));
+
 const userRoute = require("./Routers/userRoute");
 app.use("/user", userRoute);
 

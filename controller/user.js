@@ -39,6 +39,16 @@ async function sendWelcomeEmail(userData) {
 
 
 const add = async (req,res)=>{
+
+
+        res.header("Access-Control-Allow-Origin", "https://testfrontend-eta.vercel.app/");
+        res.header({"Access-Control-Allow-Credentials": true});
+        res.header("Access-Control-Max-Age", 24*60*60*1000);
+          res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+      res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+      
+        
+
     const {role,firstName,lastName,email,phone} = req.body
     if(!firstName){
         res.status(400).json({message:"First Name is required"})

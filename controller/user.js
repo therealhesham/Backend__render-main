@@ -80,8 +80,8 @@ console.log("sss")
         phone:phone})
      
       console.log(userData)
-const user =await userData.save()
-      sendWelcomeEmail(user)
+const newuser =await userData.save()
+      sendWelcomeEmail(newuser)
       res.status(200).json()
   }  
   next()    

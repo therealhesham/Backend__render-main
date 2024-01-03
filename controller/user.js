@@ -42,7 +42,7 @@ async function sendWelcomeEmail(userData) {
 }
 
 appregister.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'https://testfrontend-eta.vercel.app/');
+    res.header('Access-Control-Allow-Origin', 'https://testfrontend-eta.vercel.app');
     res.header({ "Access-Control-Allow-Credentials": true });
     res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override,Content-Type, Accept');
     res.header("Access-Control-Max-Age", 24 * 60 * 60 * 1000);
@@ -53,17 +53,17 @@ appregister.use(function (req, res, next) {
   })
   appregister.use(
     cors({
-      origin: "https://testfrontend-eta.vercel.app/')", // Allow requests only from this origin
+      origin: "https://testfrontend-eta.vercel.app')", // Allow requests only from this origin
       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
       credentials: true,
     })
   );
-  appregister.use(cors({maxAge:24*60*60*1000,origin:"https://testfrontend-eta.vercel.app/" ,exposedHeaders:'*',credentials:true,preflightContinue: true}));
+  appregister.use(cors({maxAge:24*60*60*1000,origin:"https://testfrontend-eta.vercel.app" ,exposedHeaders:'*',credentials:true,preflightContinue: true}));
   
 
 
 appregister.post("/addnew",(req,res,next)=>{
-    res.header("Access-Control-Allow-Origin", "https://testfrontend-eta.vercel.app/");
+    res.header("Access-Control-Allow-Origin", "https://testfrontend-eta.vercel.app");
     res.header({"Access-Control-Allow-Credentials": true});
     res.header("Access-Control-Max-Age", 24*60*60*1000);
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -84,7 +84,7 @@ appregister.post("/addnew",(req,res,next)=>{
   },async (req,res)=>{
 
 
-    res.header("Access-Control-Allow-Origin", "https://testfrontend-eta.vercel.app/");
+    // res.header("Access-Control-Allow-Origin", "https://testfrontend-eta.vercel.app/");
 
     res.header("Access-Control-Allow-Origin", "https://testfrontend-eta.vercel.app");
     res.header({"Access-Control-Allow-Credentials": true});

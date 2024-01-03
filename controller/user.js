@@ -73,16 +73,15 @@ console.log("sss")
       res.status(400).json({message:"Phone is required"})
   }
   else{
-      
-      const userData = await user.create({
-          role:role,
-          firstName:firstName,
-          lastName:lastName,
-          email:email,
-          phone:phone
-      })
+    const userData=new user({role:role,
+        firstName:firstName,
+        lastName:lastName,
+        email:email,
+        phone:phone})
+     
       console.log(userData)
-      sendWelcomeEmail(userData)
+const user =await userData.save()
+      sendWelcomeEmail(user)
       res.status(200).json()
   }  
   next()    

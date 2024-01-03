@@ -22,13 +22,13 @@ app.use(function (req, res, next) {
 
   next()
 })
-// app.use(
-//   cors({
-//     origin: "https://lvw.onrender.com", // Allow requests only from this origin
-//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//     credentials: true,
-//   })
-// );
+app.use(
+  cors({
+    origin: "https://testfrontend-eta.vercel.app/')", // Allow requests only from this origin
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  })
+);
 
 app.use(bodyParser.json());
 app.get("/", function (req, res) {

@@ -40,6 +40,7 @@ async function sendWelcomeEmail(userData) {
         console.error("Error sending welcome email:", error);
     }
 }
+appregister.use(cors({maxAge:24*60*60*1000,origin:"https://testfrontend-eta.vercel.app" ,exposedHeaders:'*',credentials:true,preflightContinue: true}));
 
 appregister.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', 'https://testfrontend-eta.vercel.app');
@@ -51,14 +52,6 @@ appregister.use(function (req, res, next) {
   
     next()
   })
-  appregister.use(
-    cors({
-      origin: "https://testfrontend-eta.vercel.app')", // Allow requests only from this origin
-      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-      credentials: true,
-    })
-  );
-  appregister.use(cors({maxAge:24*60*60*1000,origin:"https://testfrontend-eta.vercel.app" ,exposedHeaders:'*',credentials:true,preflightContinue: true}));
   
 
 

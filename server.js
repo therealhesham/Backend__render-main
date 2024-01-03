@@ -22,13 +22,7 @@ app.use(function (req, res, next) {
 
   next()
 })
-app.use(
-  cors({
-    origin: "https://testfrontend-eta.vercel.app/')", // Allow requests only from this origin
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-  })
-);
+
 app.use(cors({maxAge:24*60*60*1000,origin:"https://testfrontend-eta.vercel.app/" ,exposedHeaders:'*',credentials:true,preflightContinue: true}));
 
 app.use(bodyParser.json());

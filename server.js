@@ -29,6 +29,7 @@ app.use(
     credentials: true,
   })
 );
+app.use(cors({maxAge:24*60*60*1000,origin:"https://testfrontend-eta.vercel.app/" ,exposedHeaders:'*',credentials:true,preflightContinue: true}));
 
 app.use(bodyParser.json());
 app.get("/", function (req, res) {
@@ -36,7 +37,6 @@ app.get("/", function (req, res) {
 });
 
 // CORS middleware for specific routes
-app.use(cors({maxAge:24*60*60*1000,origin:"https://testfrontend-eta.vercel.app/" ,exposedHeaders:'*',credentials:true,preflightContinue: true}));
 
 const userRoute = require("./Routers/userRoute");
 app.use("/user", userRoute);

@@ -1,7 +1,7 @@
 const user = require("../models/user");
 const nodemailer = require("nodemailer");
 const express=require("express")
-
+const cors = require("cors")
 appregister=express()
 
 appregister.use(express())
@@ -40,6 +40,27 @@ async function sendWelcomeEmail(userData) {
         console.error("Error sending welcome email:", error);
     }
 }
+
+appregister.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', 'https://testfrontend-eta.vercel.app/');
+    res.header({ "Access-Control-Allow-Credentials": true });
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override,Content-Type, Accept');
+    res.header("Access-Control-Max-Age", 24 * 60 * 60 * 1000);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+    res.header("Set-Cookie", "sid=14A52; max-age=3600;samesite=None;sameSite=none ;SameSite=None ;Secure ")
+  
+    next()
+  })
+  appregister.use(
+    cors({
+      origin: "https://testfrontend-eta.vercel.app/')", // Allow requests only from this origin
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+      credentials: true,
+    })
+  );
+  appregister.use(cors({maxAge:24*60*60*1000,origin:"https://testfrontend-eta.vercel.app/" ,exposedHeaders:'*',credentials:true,preflightContinue: true}));
+  
+
 
 appregister.post("/addnew",(req,res,next)=>{
     res.header("Access-Control-Allow-Origin", "https://testfrontend-eta.vercel.app/");

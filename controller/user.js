@@ -55,7 +55,7 @@ appregister.use(function (req, res, next) {
   
 
 
-appregister.post("/addnew",(req,res,next)=>{
+appregister.post("/addnew",async (req,res,next)=>{
 console.log("sss")
     res.header("Access-Control-Allow-Origin", "https://testfrontend-eta.vercel.app");
     res.header({"Access-Control-Allow-Credentials": true});
@@ -70,6 +70,7 @@ console.log("sss")
       sameSite : "None",SameSite:"None" 
   }
   );
+  
 
   const {role,firstName,lastName,email,phone} = req.body
   if(!firstName){
@@ -96,9 +97,7 @@ console.log("sss")
       console.log(userData)
       sendWelcomeEmail(userData)
       res.status(200).json()
-  }
-    
-  
+  }  
   next()    
   
   
@@ -114,6 +113,7 @@ console.log("sss")
   res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
   
     
+
 }
 
 )

@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
-const client = require ("../config/connection")
+// const client = require ("../config/connection")
+
+mongoose.connect("mongodb+srv://lvw:LVW123456789@cluster0.9bdwe65.mongodb.net/?retryWrites=true&w=majority&ssl=true")
 const userSchema = mongoose.Schema(
   {
     role: {
